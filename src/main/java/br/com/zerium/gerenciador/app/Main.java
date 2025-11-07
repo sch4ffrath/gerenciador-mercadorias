@@ -1,32 +1,19 @@
-package br.com.zerium.gerenciador.app;
+package br.com.zerium.gerenciador.app; // Verifique o nome do seu pacote
 
 import br.com.zerium.gerenciador.view.TelaGerenciamento;
-
+import com.formdev.flatlaf.FlatLightLaf; // <<< MUDANÇA 1: Importa o tema claro padrão
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            // Define o Look and Feel para Nimbus, que é moderno e multiplataforma
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            // Se o Nimbus não estiver disponível, usa o padrão do sistema
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            // Aplica o tema FlatLaf Light (tema claro padrão)
+            UIManager.setLookAndFeel(new FlatLightLaf()); // <<< MUDANÇA 2: Usa o novo tema
+        } catch (UnsupportedLookAndFeelException e) {
+            System.err.println("Falha ao carregar o tema FlatLaf.");
+            e.printStackTrace();
         }
 
-        // Executa a criação da tela na thread de eventos do Swing
-        SwingUtilities.invokeLater(() -> {
-            TelaGerenciamento tela = new TelaGerenciamento();
-            tela.setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> new TelaGerenciamento().setVisible(true));
     }
 }

@@ -7,7 +7,6 @@ public class Produto {
     private double preco;
     private int quantidade;
 
-    // Construtores, Getters, Setters e toString...
     public Produto(String nome, String descricao, double preco, int quantidade) {
         this.nome = nome;
         this.descricao = descricao;
@@ -15,6 +14,7 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
+    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getNome() { return nome; }
@@ -28,6 +28,6 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto [ID=" + id + ", Nome='" + nome + "', Preço=" + preco + ", Quantidade=" + quantidade + "]";
+        return this.nome;
     }
 }
